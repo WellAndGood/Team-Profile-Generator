@@ -1,0 +1,23 @@
+{
+  "name": "team-builder-homework",
+  "version": "1.0.0",
+  "description": "Use node, inquirer, and jest to generate an HTML with details about your staff",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "jest": "^26.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WellAndGood/Team-Profile-Generator.git"
+  },
+  "author": "Daniel Pisani",
+  "license": "Open"
+}
