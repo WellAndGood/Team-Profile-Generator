@@ -13,6 +13,11 @@ describe('Employee Object', () => {
     expect(emp.getEmail()).toBe(empEmail);
   });
 
+  it('should contain a @ in the email string', () => {
+    const emp = new Employee("Harold", 1, "harold@gmail.com", "employee")
+    expect(emp.email).toEqual(expect.stringContaining('@'));
+  });
+
   it('should return their employee ID as entered', () => {
     const empID = 1
     const emp = new Employee("Harold", 1, "harold@gmail.com", "employee")
