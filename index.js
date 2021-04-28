@@ -124,43 +124,47 @@ function internAdd() {
             message: "Enter your intern's school:"
         }
     ]).then(function(data) {
-        const internClass = new Intern(data.internsName, data.internsID, data.internsEmail, "Engineer", data.internsSchool)
+        const internClass = new Intern(data.internsName, data.internsID, data.internsEmail, "Intern", data.internsSchool)
         teamMembers.push(internClass)
         console.log(internClass)
         newTeamMember()
     })
 }
+
 function assembleTeam() {
-    console.log("Team:" , teamMembers)
+    // console.log("Team:" , teamMembers)
     teamAssembler(teamMembers)
 }
 
-let lastThing = ""
-
 let teamAssembler = function(teamArray) {
     console.log("Team:", teamArray);
+    let lastThing = []
     let cardDiv = ""
     
     for (let i = 0; i < teamArray.length; i++) {
+        console.log(teamArray[i])
         let role = teamArray[i].role
+        console.log("role: " + role)
         if (role === "Manager") {
             let addOn = "Office number: "
-            let thing = toString(teamArray[i].officeNum)
-            const lastThing = addOn + thing;
-            return lastThing
+            let thing = teamArray[i].getOfficeNumber()
+            lastThing = addOn + thing;
+            console.log(lastThing)
         } 
         if (role === "Engineer") {
             let addOn = "Github account: "
             let thing = `<a href='http://www.github.com/${teamArray[i].github}>${teamArray[i].github}</a>`;
-            const lastThing = addOn + thing
-            return lastThing
+            lastThing = addOn + thing
+            console.log(lastThing)
         } 
         if (role === "Intern") {
             let addOn = "Intern's School: "
             let thing = teamArray[i].school
-            const lastThing = addOn + thing
-            return lastThing
+            lastThing = addOn + thing
+            console.log(lastThing)
         }
+
+        console.log("Last thing: " + lastThing)
 
         let userName = teamArray[i].name
         let userId = teamArray[i].id
@@ -180,16 +184,16 @@ let teamAssembler = function(teamArray) {
             </ul>
         </div>
         `
-
-        const completeCode = combineCode(cardDiv)
-        console.log(completeCode)
-        createWebsite(completeCode)
-        return completeCode
     }
+    const completeCode = combineCode(cardDiv)
+    console.log(completeCode)
+    createWebsite(completeCode)
+    return completeCode
+    
 }
 
 function combineCode(cardCode) {
-    const baseHTMLStart = `
+    const baseHTML = `
     <!DOCTYPE html>
     <html lang="en">
 
@@ -215,14 +219,13 @@ function combineCode(cardCode) {
             </div>
     </body>
     `
-    return baseHTMLStart
+    return baseHTML
 }
 
 function createWebsite(htmlCode) {
-    fs.writeFile('./dist/index.html', htmlCode, function(error) {
+    fs.writeFile('./outputfile/team.html', htmlCode, function(error) {
         if (error) {
             throw error;
-            console.error(error)
         }
     })
 }
