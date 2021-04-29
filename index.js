@@ -37,7 +37,7 @@ function newTeamMember() {
                 internAdd()
                 break;
             case "Stop adding employees":
-                assembleTeam()
+                teamAssembler(teamMembers)
                 break
         }
     })
@@ -131,10 +131,9 @@ function internAdd() {
     })
 }
 
-function assembleTeam() {
-    // console.log("Team:" , teamMembers)
-    teamAssembler(teamMembers)
-}
+// function assembleTeam() {
+//     teamAssembler(teamMembers)
+// }
 
 let teamAssembler = function(teamArray) {
     console.log("Team:", teamArray);
