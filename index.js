@@ -144,43 +144,46 @@ let teamAssembler = function(teamArray) {
     for (let i = 0; i < teamArray.length; i++) {
         console.log(teamArray[i])
         let role = teamArray[i].role
+        let userRole = ""
         console.log("role: " + role)
         if (role === "Manager") {
             let addOn = "Office number: "
             let thing = teamArray[i].getOfficeNumber()
             lastThing = addOn + thing;
             console.log(lastThing)
+            userRole = `${role}  <i class="fas fa-tasks"></i>`
         } 
         if (role === "Engineer") {
             let addOn = "Github account: "
-            let thing = `<a href='http://www.github.com/${teamArray[i].github}>${teamArray[i].github}</a>`;
+            let thing = `<a href="http://www.github.com/${teamArray[i].github}">${teamArray[i].github}</a>`;
             lastThing = addOn + thing
             console.log(lastThing)
+            userRole = `${role}  <i class="fas fa-cogs"></i>`
         } 
         if (role === "Intern") {
             let addOn = "Intern's School: "
             let thing = teamArray[i].school
             lastThing = addOn + thing
             console.log(lastThing)
+            userRole = `${role}  <i class="fas fa-school"></i>`
         }
 
-        console.log("Last thing: " + lastThing)
+        // console.log("Last thing: " + lastThing)
 
         let userName = teamArray[i].name
         let userId = teamArray[i].id
         let userEmail = teamArray[i].email
-        let userRole = teamArray[i].role
 
         cardDiv += `
-        <div class="card col" style="width: 18rem;">
-            <div class="card body card-header">
-                <h5 class="card-title">${userName}</h5>
-                <h6 class="card-subtitle nb-2 text-muted">${userRole}</h6>
+        <div class="card col circle m-2">
+            <div class="card body card-header m-2 bg-primary text-white">
+                <h5 class="card-title text-center">${userName}</h5>
+                <h6 class="card-subtitle nb-2 text-center text-center">${userRole}</h6>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Email: <a href=mailto: ${userEmail}>${userEmail}</a></li>
-                <li class="list-group-item">Employee ID: ${userId}</li>
-                <li class="list-group-item">${lastThing}</li>
+                <li class="list-group-item text-center">Email: <a href="mailto:${userEmail}">${userEmail}</a></li>
+                <li class="list-group-item text-center">Employee ID: ${userId}</li>
+                <li class="list-group-item text-center">${lastThing}</li>
             </ul>
         </div>
         `
@@ -204,17 +207,31 @@ function combineCode(cardCode) {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+        <style>
+            body {background-color: #f2f6e9; 
+            background-image: url('https://images.unsplash.com/photo-1496096265110-f83ad7f96608?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1'); 
+            background-size: stretch;
+            background-position: center; 
+            position: relative};
+           .navbar {color: #6ab446; opacity: 100%};  
+           .navbar-header {color: #6ab446};
+           .top-page {background-color: #fff}
+           .flexer {display: flexbox; flex-wrap: wrap; justify-content: space-evenly;}
+           .card {min-width: 550px; max-width: 45%; flex: 1 1 auto}
+        </style>
     </head>
 
     <body>
-        <nav class="navbar">
-            <div class="navbar-header">
-                <span class="navbar-brand mb-0 h1">Meet The Team</span>
+        <nav class="jumbotron jumbotron-fluid p1 text-center">
+            <div class="navbar-header mx-auto">
+                <span class="navbar-brand mb-0 h1"><h1>Meet The Team!</h1></span>
             </div>
         </nav>
 
         <main class="container">
-            <div class="row">
+            <div class="row flexer">
                 ${cardCode}
             </div>
     </body>
