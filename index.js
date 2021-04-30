@@ -131,10 +131,6 @@ function internAdd() {
     })
 }
 
-// function assembleTeam() {
-//     teamAssembler(teamMembers)
-// }
-
 let teamAssembler = function(teamArray) {
     console.log("Team:", teamArray);
     let lastThing = []
@@ -174,7 +170,7 @@ let teamAssembler = function(teamArray) {
         let userEmail = teamArray[i].email
 
         cardDiv += `
-        <div class="card col circle m-2">
+        <div class="card col unit circle m-2">
             <div class="card body card-header m-2 bg-primary text-white">
                 <h5 class="card-title text-center">${userName}</h5>
                 <h6 class="card-subtitle nb-2 text-center text-center">${userRole}</h6>
@@ -191,7 +187,6 @@ let teamAssembler = function(teamArray) {
     console.log(completeCode)
     createWebsite(completeCode)
     return completeCode
-    
 }
 
 function combineCode(cardCode) {
@@ -207,19 +202,6 @@ function combineCode(cardCode) {
         <link rel="stylesheet" href="style.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-
-        <style>
-            body {background-color: #f2f6e9; 
-            background-image: url('https://images.unsplash.com/photo-1496096265110-f83ad7f96608?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1'); 
-            background-size: stretch;
-            background-position: center; 
-            position: relative};
-           .navbar {color: #6ab446; opacity: 100%};  
-           .navbar-header {color: #6ab446};
-           .top-page {background-color: #fff}
-           .flexer {display: flexbox; flex-wrap: wrap; justify-content: space-evenly;}
-           .card {min-width: 550px; max-width: 45%; flex: 1 1 auto}
-        </style>
     </head>
 
     <body>
@@ -239,7 +221,7 @@ function combineCode(cardCode) {
 }
 
 function createWebsite(htmlCode) {
-    fs.writeFile('./outputfile/team.html', htmlCode, function(error) {
+    fs.writeFile('./dist/team.html', htmlCode, function(error) {
         if (error) {
             throw error;
         }

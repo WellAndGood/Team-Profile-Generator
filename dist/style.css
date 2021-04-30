@@ -1,0 +1,27 @@
+body {
+    background-color: #f2f6e9; 
+    background-image: url('https://images.unsplash.com/photo-1496096265110-f83ad7f96608?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1'); 
+    background-size: stretch;
+    background-position: center; 
+    position: relative
+}
+
+.navbar-header {
+    color: #2c5219
+}
+   
+.top-page {
+    background-color: #fff
+}
+
+.card {
+    display: flex; flex-wrap: wrap; justify-content: space-around;
+}
+
+.unit {
+    flex: 1 1 300px;
+}
+
+.card-header {
+    max-width: 100%
+}
