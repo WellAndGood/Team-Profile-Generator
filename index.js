@@ -9,6 +9,7 @@ const fs = require("fs");
 
 const teamMembers = []
 
+// Function to choose a new team member
 newTeamMember()
 function newTeamMember() {
     inquirer.prompt([
@@ -23,6 +24,8 @@ function newTeamMember() {
                 "Stop adding employees"
             ]
         }
+
+        // Based on the response, launches a function either for i) the three types of employees, or ii) assembling your team (i.e., exporting the data)
     ]).then((data) => {
         const roleToChoose = data.newEmployee;
 
@@ -43,7 +46,7 @@ function newTeamMember() {
     })
 }
 
-
+// The above function of creating a manager profile, with questions whose answer will fit into its class constructor 
 function managerAdd() {
     inquirer.prompt([
         {
@@ -66,6 +69,7 @@ function managerAdd() {
             name: "managersOfficeNumber",
             message: "Enter your manager's office phone number:"
         }
+        // creates a 'manager' class using the answers from Inquirer. Pushes the class into an array of employees.
     ]).then(function(data) {
         const managerClass = new Manager(data.managersName, data.managersID, data.managersEmail, "Manager", data.managersOfficeNumber)
         teamMembers.push(managerClass)
@@ -73,6 +77,7 @@ function managerAdd() {
     })
 }
 
+// The above function of creating an engineer profile, with questions whose answer will fit into its class constructor
 function engineerAdd() {
     inquirer.prompt([
         {
@@ -95,12 +100,15 @@ function engineerAdd() {
             name: "engineersGithub",
             message: "Enter your engineer's Github account:"
         }
+        // creates an 'engineer' class using the answers from Inquirer. Pushes the class into an array of employees.
     ]).then(function(data) {
         const engineerClass = new Engineer(data.engineersName, data.engineersID, data.engineersEmail, "Engineer", data.engineersGithub)
         teamMembers.push(engineerClass)
         newTeamMember()
     })
 }
+
+// The above function of creating an intern profile, with questions whose answer will fit into its class constructor
 function internAdd() {
     inquirer.prompt([
         {
@@ -123,6 +131,7 @@ function internAdd() {
             name: "internsSchool",
             message: "Enter your intern's school:"
         }
+        // creates an 'intern' class using the answers from Inquirer. Pushes the class into an array of employees.
     ]).then(function(data) {
         const internClass = new Intern(data.internsName, data.internsID, data.internsEmail, "Intern", data.internsSchool)
         teamMembers.push(internClass)
@@ -131,11 +140,14 @@ function internAdd() {
     })
 }
 
+// Is launched once the user is finished creating the team.
 let teamAssembler = function(teamArray) {
     console.log("Team:", teamArray);
     let lastThing = []
     let cardDiv = ""
     
+    // A for loop which parses through the array, determines what type of employee it is, and generate respective HTML elements.
+
     for (let i = 0; i < teamArray.length; i++) {
         console.log(teamArray[i])
         let role = teamArray[i].role
@@ -150,7 +162,7 @@ let teamAssembler = function(teamArray) {
         } 
         if (role === "Engineer") {
             let addOn = "Github account: "
-            let thing = `<a href="http://www.github.com/${teamArray[i].github}">${teamArray[i].github}</a>`;
+            let thing = `<a href="http://www.github.com/${teamArray[i].github}" target="_blank">${teamArray[i].github}</a>`;
             lastThing = addOn + thing
             console.log(lastThing)
             userRole = `${role}  <i class="fas fa-cogs"></i>`
@@ -163,12 +175,12 @@ let teamAssembler = function(teamArray) {
             userRole = `${role}  <i class="fas fa-school"></i>`
         }
 
-        // console.log("Last thing: " + lastThing)
-
+        // These are generic variables which apply to any of the three types of employees
         let userName = teamArray[i].name
         let userId = teamArray[i].id
         let userEmail = teamArray[i].email
 
+        // This is the template for an HTML card, using the above-generated variables to fill in the blanks. This repeats based on the number/length of the array of employees.
         cardDiv += `
         <div class="card col unit circle m-2">
             <div class="card body card-header m-2 bg-primary text-white">
@@ -183,12 +195,14 @@ let teamAssembler = function(teamArray) {
         </div>
         `
     }
+    // Runs the two below functions `combineCode` and `createWebsite` to combine the card HTML and the boilerplate HTML together, then to write that HTML to a file using FS. 
     const completeCode = combineCode(cardDiv)
     console.log(completeCode)
     createWebsite(completeCode)
     return completeCode
 }
 
+// Returns card HTML and basic HTML template (with Font Awesome and Bootstrap)
 function combineCode(cardCode) {
     const baseHTML = `
     <!DOCTYPE html>
@@ -220,8 +234,10 @@ function combineCode(cardCode) {
     return baseHTML
 }
 
+// Exports HTML file to a separate folder
 function createWebsite(htmlCode) {
-    fs.writeFile('./dist/team.html', htmlCode, function(error) {
+    // fs.writeFile('./dist/team.html', htmlCode, function(error) {
+    fs.writeFile(path.join(__dirname, 'dist','team.html'), htmlCode, function(error) {
         if (error) {
             throw error;
         }

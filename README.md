@@ -60,7 +60,7 @@ html.css | The complimentary CSS file
 
 # Appearance 
 Once loaded, the generated HTML page should look like this:  
-<!-- ![Appearance Upon Deployment](Screenshot.jpg) -->
+![Appearance Upon Deployment](Screenshot.jpg)
 
 This website is available at the following URL:   
 https://f34rth3r34p3r.github.io/DanielsWeatherNetwork/
