@@ -57,16 +57,15 @@ Manager.test.js | Manager class constructor test file (Jest)
 team.html | The final-generated HTML file
 html.css | The complimentary CSS file
 
-
 # Appearance 
 Once loaded, the generated HTML page should look like this:  
 ![Appearance Upon Deployment](Screenshot.jpg)
 
-This website is available at the following URL:   
-https://f34rth3r34p3r.github.io/DanielsWeatherNetwork/
-
 You can access the `.git` files at:
 https://github.com/WellAndGood/Team-Profile-Generator.git
+
+A video explaining the functioning of this app can be found here:
+https://www.youtube.com/watch?v=TjMtsaHCnPw
 
 **How to contribute to the application**: Given that this application acts as homework, please do not contribute to this repository.
 
